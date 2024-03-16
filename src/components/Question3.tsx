@@ -1,13 +1,14 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { getRandomInt } from './utils/getRandomInt';
 
 export const Question3 = () => {
   const [id, setId] = useState(1);
 
   return (
     <div className="ml-10 mt-10">
-      <button onClick={() => setId(Math.round(Math.random() * 100))} className="border border-slate-500 px-4 py-2">
+      <button onClick={() => setId(getRandomInt(1, 11))} className="border border-slate-500 px-4 py-2">
         Show me a different post
       </button>
 
