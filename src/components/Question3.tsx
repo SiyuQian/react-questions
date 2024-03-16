@@ -7,16 +7,24 @@ export const Question3 = () => {
 
   return (
     <div className="ml-10 mt-10">
-      <button className="border border-slate-500 px-4 py-2">Show me a different post</button>
+      <button onClick={() => setId(Math.round(Math.random() * 100))} className="border border-slate-500 px-4 py-2">
+        Show me a different post
+      </button>
 
-      <Question3Content />
+      <Question3Content id={id} />
     </div>
   );
 };
 
-export const Question3Content = () => {
+export const Question3Content = ({ id }: { id: number }) => {
   // https://dummyjson.com/post/${id}
   const [text, setText] = useState('');
+
+  useEffect(() => {
+    fetch(`https://dummyjson.com/post/${id}`)
+      .then((res) => res.json())
+      .then((data) => setText(data.body));
+  }, [id]);
 
   return <p>{text}</p>;
 };
